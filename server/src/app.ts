@@ -5,9 +5,9 @@ import cors from "cors";
 import { database } from "./config";
 import { schema } from "./schema";
 
-database();
-
 const app = express();
+
+database();
 
 app.use(cors());
 app.use(express.json());
@@ -19,6 +19,4 @@ app.use(
   })
 );
 
-app.listen(3001, () => {
-  console.log("SERVER RUNNING ON PORT 3001");
-});
+export { app };
