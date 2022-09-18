@@ -1,26 +1,35 @@
 import React from "react";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
 
-import "./App.css";
-import CreateUser from "./Components/CreateUser";
-import ListOfUsers from "./Components/ListOfUsers";
-import UpdatePassword from "./Components/UpdatePassword";
+import { client } from "./services";
+import { CreateUser, ListOfUsers, UpdatePassword } from "./pages";
+import { Header } from "./components";
+import { Layout } from "antd";
 
-function App() {
-  const client = new ApolloClient({
-    uri: "http://localhost:3001/graphql",
-    cache: new InMemoryCache(),
-  });
+const { Content, Footer } = Layout;
 
+const App: React.FC = () => {
   return (
-    <>
-      <ApolloProvider client={client}>
+    <ApolloProvider client={client}>
+      <Header />
+      <Content
+        style={{
+          padding: "0 50px",
+        }}
+      >
         <CreateUser />
         <ListOfUsers />
         <UpdatePassword />
-      </ApolloProvider>
-    </>
+      </Content>
+      <Footer
+        style={{
+          textAlign: "center",
+        }}
+      >
+        Ant Design ©2018 Created by Ant UED
+      </Footer>
+    </ApolloProvider>
   );
-}
+};
 
 export default App;
